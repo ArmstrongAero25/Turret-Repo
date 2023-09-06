@@ -33,3 +33,8 @@ def InitialiseAndCalibrate (kit):
     cap.set(4, 420) # and Width of the capture
 
     return cap
+
+def LookforPeople(cap):
+
+
+    return Personfound # Filler Variable to signify that a person is found on the feed
