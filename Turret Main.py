@@ -35,6 +35,8 @@ def InitialiseAndCalibrate (kit):
     return cap
 
 def LookforPeople(cap):
-
-
+    Personfound = False
+    while Personfound == False:
+        #Keep Looking
+    
     return Personfound # Filler Variable to signify that a person is found on the feed
