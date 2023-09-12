@@ -48,6 +48,8 @@ def InitialiseAndCalibrate (kit):
 
     return cap
 
+
+# This Will go in Process 1
 def LookforPeople(cap):
     
     return Personfound # Filler Variable to signify that a person is found on the feed
@@ -55,3 +57,13 @@ def LookforPeople(cap):
 ###################Main############################
     
 cap = InitialiseAndCalibrate (kit)
+
+
+#This Will go In Process 2
+def SearchPattern(Stop): # This func. will turn the Panning Servo back and forth to cover
+                     # a wider search fov while the camera is looking for people
+
+# This will (probably) go into Process 3
+def FoundPerson (PersonFound):
+
+    return Stop
