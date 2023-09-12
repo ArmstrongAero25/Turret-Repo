@@ -60,10 +60,11 @@ cap = InitialiseAndCalibrate (kit)
 
 
 #This Will go In Process 2
-def SearchPattern(Stop): # This func. will turn the Panning Servo back and forth to cover
+def SearchPattern(PersonFound): # This func. will turn the Panning Servo back and forth to cover
                      # a wider search fov while the camera is looking for people
+    while PersonFound != True:
+        kit.servo(0).throttle = 0.5 
 
-# This will (probably) go into Process 3
-def FoundPerson (PersonFound):
+        time.sleep (3)
 
-    return Stop
+        kit.servo(0).throttle = -0.5
