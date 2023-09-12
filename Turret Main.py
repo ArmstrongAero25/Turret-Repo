@@ -51,12 +51,8 @@ def InitialiseAndCalibrate (kit):
 
 # This Will go in Process 1
 def LookforPeople(cap):
-    
+    # Person/Object Id code
     return Personfound # Filler Variable to signify that a person is found on the feed
-
-###################Main############################
-    
-cap = InitialiseAndCalibrate (kit)
 
 
 #This Will go In Process 2
@@ -68,3 +64,10 @@ def SearchPattern(PersonFound): # This func. will turn the Panning Servo back an
         time.sleep (3)
 
         kit.servo(0).throttle = -0.5
+
+        
+###################Main############################
+    
+cap = InitialiseAndCalibrate (kit)
+
+
