@@ -31,6 +31,11 @@ def InitialiseAndCalibrate (kit):
     time.sleep(3) # Wait 3 seconds 
 
     kit.servo[0].angle = 0 # Sets angle back to original position
+
+
+# This Will go in Process 1
+def LookforPeople(cap):
+    # Person/Object Id code
   
     # Enable camera
     cap = cv2.VideoCapture(0, cv2.CAP_V4L2) #cv2 will use Camera 0 (Default camera), in this case is the Raspberry Pi camera
@@ -46,13 +51,7 @@ def InitialiseAndCalibrate (kit):
         cap.set(3, 640) # Setting the Height,
         cap.set(4, 420) # and Width of the capture
       
-    return cap
-
-
-# This Will go in Process 1
-def LookforPeople(cap):
-    # Person/Object Id code
-    return Personfound # Filler Variable to signify that a person is found on the feed
+    return cap, Personfound # Filler Variable to signify that a person is found on the feed
 
 
 #This Will go In Process 2
