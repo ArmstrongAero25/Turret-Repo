@@ -31,21 +31,21 @@ def InitialiseAndCalibrate (kit):
     time.sleep(3) # Wait 3 seconds 
 
     kit.servo[0].angle = 0 # Sets angle back to original position
-
+  
     # Enable camera
+    cap = cv2.VideoCapture(0, cv2.CAP_V4L2) #cv2 will use Camera 0 (Default camera), in this case is the Raspberry Pi camera
+
     while (True):
         
-        cap = cv2.VideoCapture(0, cv2.CAP_V4L2) #cv2 will use Camera 0 (Default camera), in this case is the Raspberry Pi camera
-        
         #Set Capture Frame
-        frame = cap.read
+        frame = cap.read()
         
         #Display the frame
         cv2.imshow('frame', frame)
         
         cap.set(3, 640) # Setting the Height,
         cap.set(4, 420) # and Width of the capture
-
+      
     return cap
 
 
