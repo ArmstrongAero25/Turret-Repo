@@ -34,7 +34,7 @@ def InitialiseAndCalibrate (kit):
 
 
 # This Will go in Process 1
-def LookforPeople(cap):
+def LookforPeople():
     # Person/Object Id code
   
     # Enable camera
@@ -68,6 +68,6 @@ def SearchPattern(PersonFound): # This func. will turn the Panning Servo back an
         
 ###################Main############################
     
-cap = InitialiseAndCalibrate (kit)
-
+InitialiseAndCalibrate (kit)
+cap, Personfound = LookforPeople ()
 
