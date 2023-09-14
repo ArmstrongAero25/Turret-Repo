@@ -1,4 +1,3 @@
-
 # Camera Imports
 import cv2
 #import Picamera
