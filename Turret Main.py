@@ -38,6 +38,7 @@ def LookforPeople(cap):
     # Person/Object Id code
   
     # Enable camera
+    cv2.startWindowThread()
     cap = cv2.VideoCapture(0, cv2.CAP_V4L2) #cv2 will use Camera 0 (Default camera), in this case is the Raspberry Pi camera
 
     #while (True):
