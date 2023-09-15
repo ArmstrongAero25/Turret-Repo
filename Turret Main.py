@@ -51,6 +51,9 @@ def LookforPeople():
         
         cap.set(3, 640) # Setting the Height,
         cap.set(4, 420) # and Width of the capture
+
+# The rest of the code will come under this. So when a Person is Found, the Variable will become true and
+# a signal will be sent to the Servo Function to turn the servos to the X and Y coordinates of the person in the frame.
       
     return cap, Personfound # Filler Variable to signify that a person is found on the feed
 
