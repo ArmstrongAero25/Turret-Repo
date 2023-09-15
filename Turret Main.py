@@ -14,6 +14,10 @@ import os
 import time
 from matplotlib import pyplot as pltd
 
+# Multiprocessing Import
+import multiprocessing # Multi processing means that I can run more than one function at a time
+                       # Therefore meaning I can identify people and turn the servos at the same time!
+
 def InitialiseAndCalibrate (kit):
 
     # Enable Servos and Set to 0
