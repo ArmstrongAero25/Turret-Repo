@@ -13,6 +13,7 @@ import numpy as np
 import os
 import time
 #from matplotlib import pyplot as pltd
+import multiprocessing
 
 kit = Servo(channels = 16) # The Adafruit Raspberry Pi hat for the Servos has 16 Pwm Channels to use.
                            # Here I am making all of the channels active
