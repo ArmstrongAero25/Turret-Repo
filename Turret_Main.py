@@ -40,23 +40,25 @@ def LookforPeople():
     # Person/Object Id code
     
     # Enable camera
-    #cv2.startWindowThread()
+    # cv2.startWindowThread()
     cap = cv2.VideoCapture(0, cv2.CAP_V4L2) #cv2 will use Camera 0 (Default camera), in this case is the Raspberry Pi camera
 
     #while (True):
         
     #Set Capture Frame
-    frame = cap.read()
-        
-    #Display the frame
-    cv2.imshow('frame', frame)
-        
-    cap.set(3, 640) # Setting the Height,
-    cap.set(4, 420) # and Width of the capture
+    if cap.isOpened():
+        frame = cap.read()
+            
+        #Display the frame
+        cv2.imshow('frame', frame)
+    
+        cap.set(3, 640) # Setting the Height,
+        cap.set(4, 420) # and Width of the capture
 
-# The rest of the code will come under this. So when a Person is Found, the Variable will become true and
-# a signal will be sent to the Servo Function to turn the servos to the X and Y coordinates of the person in the frame.
-      
+    # The rest of the code will come under this. So when a Person is Found, the Variable will become true and
+    # a signal will be sent to the Servo Function to turn the servos to the X and Y coordinates of the person in the frame.
+    else:
+        print (type(cap), "An Error Has occurred.")
     return cap, Personfound # Filler Variable to signify that a person is found on the feed
 
 
