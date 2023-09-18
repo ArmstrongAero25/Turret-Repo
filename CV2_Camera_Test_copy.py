@@ -1,5 +1,5 @@
 import cv2
-
+import numpy as np
 
 cv2.startWindowThread()
 cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
