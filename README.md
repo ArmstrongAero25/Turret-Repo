@@ -2,6 +2,11 @@
 
 This repo is for a small project I am working on:
 
-The aim is to build and program a full operational sentry turret/gun (Its a NERF gun!!!)
+The aim is to build and program a fully operational sentry turret/gun (It's a NERF gun!!!)
 
-This is a huge WIP but there will be many improvments to come.
+This is a colossal WIP but there will be many improvements to come.
+
+
+# RASPBERRY PI TERMINAL COMMANDS TO OPERATE CAMERA:
+
+sudo modprobe bcm2835-v4l2
