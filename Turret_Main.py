@@ -58,7 +58,7 @@ def LookforPeople():
         # a signal will be sent to the Servo Function to turn the servos to the X and Y coordinates of the person in the frame.
     else:
         print (type(cap), "An Error Has occurred.")
-    return cap, Personfound # Filler Variable to signify that a person is found on the feed
+    return Personfound # Filler Variable to signify that a person is found on the feed
 
 
 #This Will go In Process 2
@@ -75,5 +75,5 @@ def SearchPattern(PersonFound): # This func. will turn the Panning Servo back an
 ###################Main############################
     
 InitialiseAndCalibrate (kit)
-cap, Personfound = LookforPeople ()
+Personfound = LookforPeople ()
 
