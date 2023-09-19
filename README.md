@@ -10,3 +10,4 @@ This is a colossal WIP but there will be many improvements to come.
 # RASPBERRY PI TERMINAL COMMANDS TO OPERATE CAMERA:
 
 sudo modprobe bcm2835-v4l2
+pip uninstall opencv-python
