@@ -14,7 +14,7 @@ while True:
     cv2.imshow('Input', frame)
     grey = cv2.cvtColor(cap, cv2.COLOR_BGR2GRAY)
     
-    # read haacascade to detect people in input image
+    # read haarcascade to detect people in input image
     Person_cascade = cv2.CascadeClassifier('haarcascades\haarcascade_fullbody.xml')
 
     # detects people in the input image
