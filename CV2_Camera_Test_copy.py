@@ -14,14 +14,14 @@ while True:
     cv2.imshow('Input', frame)
     grey = cv2.cvtColor(cap, cv2.COLOR_BGR2GRAY)
     
-    # read haacascade to detect faces in input image
+    # read haacascade to detect people in input image
     Person_cascade = cv2.CascadeClassifier('haarcascades\haarcascade_fullbody.xml')
 
-    # detects faces in the input image
+    # detects people in the input image
     People = Person_cascade.detectMultiScale(grey, 1.1, 2)
     print('Number of detected People:', len(People))
 
-    # loop over all the detected faces
+    # loop over all the detected people
     for (x,y,w,h) in People:
 
         # To draw a rectangle around the detected face  
