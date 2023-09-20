@@ -18,7 +18,7 @@ This needs to be done as I need to install: opencv-contrib-python through pip in
 The Above doesn't work
 
 
-#This Might Work
+# This Might Work
 
 git clone --recursive https://github.com/opencv/opencv-python.git
 
