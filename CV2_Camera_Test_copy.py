@@ -3,7 +3,6 @@ import numpy as np
 
 cv2.startWindowThread()
 cap = cv2.VideoCapture(-1, cv2.CAP_V4L2)
-
 # Check if the webcam is opened correctly
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
@@ -12,13 +11,15 @@ while True:
     ret, frame = cap.read()
     frame = cv2.resize(frame, None, fx=1, fy=1, interpolation=cv2.INTER_AREA)
     cv2.imshow('Input', frame)
-    grey = cv2.cvtColor(np.float32(frame), cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(np.float32(frame), cv2.COLOR_BGR2GRAY)
     
     # read haacascade to detect faces in input image
     Person_cascade = cv2.CascadeClassifier("Desktop/haarcascade_fullbody.xml")
 
     # detects people in the input image
-    People = Person_cascade.detectMultiScale(grey, 1.1, 2)
+    gray = np.array(gray, dtype = 'uint8')
+
+    People = Person_cascade.detectMultiScale(gray, 1.1, 2, 0)
     print('Number of detected People:', len(People))
 
     # loop over all the detected people
