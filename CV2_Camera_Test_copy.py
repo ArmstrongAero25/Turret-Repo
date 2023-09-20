@@ -15,7 +15,7 @@ while True:
     grey = cv2.cvtColor(np.float32(frame), cv2.COLOR_BGR2GRAY)
     
     # read haacascade to detect faces in input image
-    Person_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascades\haarcascade_fullbody.xml")
+    Person_cascade = cv2.CascadeClassifier("haarcascades\haarcascade_fullbody.xml")
 
     # detects people in the input image
     People = Person_cascade.detectMultiScale(grey, 1.1, 2)
