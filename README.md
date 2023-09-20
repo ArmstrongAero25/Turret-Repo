@@ -15,6 +15,10 @@ pip uninstall opencv-python
 
 This needs to be done as I need to install: opencv-contrib-python through pip install opencv-contrib-python
 
+The Above doesn't work
+
+
+#This Might Work
 
 git clone --recursive https://github.com/opencv/opencv-python.git
 
