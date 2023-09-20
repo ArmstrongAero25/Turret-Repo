@@ -14,3 +14,12 @@ sudo modprobe bcm2835-v4l2
 pip uninstall opencv-python
 
 This needs to be done as I need to install: opencv-contrib-python through pip install opencv-contrib-python
+
+
+git clone --recursive https://github.com/opencv/opencv-python.git
+
+cd opencv-python
+
+export ENABLE_CONTRIB=1
+
+pip wheel . --verbose
