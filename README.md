@@ -20,7 +20,7 @@ The Above doesn't work
 
 # This Might Work
 
-git clone --recursive https://github.com/opencv/opencv-python.git
+git clone --recursive https://github.com/opencv/opencv_contrib.git
 
 cd opencv-python
 
