@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 cv2.startWindowThread()
-cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
+cap = cv2.VideoCapture(-1, cv2.CAP_V4L2)
 
 # Check if the webcam is opened correctly
 if not cap.isOpened():
@@ -15,7 +15,7 @@ while True:
     grey = cv2.cvtColor(np.float32(frame), cv2.COLOR_BGR2GRAY)
     
     # read haacascade to detect faces in input image
-    Person_cascade = cv2.CascadeClassifier("haarcascades\haarcascade_fullbody.xml")
+    Person_cascade = cv2.CascadeClassifier("Desktop/haarcascade_fullbody.xml")
 
     # detects people in the input image
     People = Person_cascade.detectMultiScale(grey, 1.1, 2)
