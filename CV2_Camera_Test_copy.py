@@ -3,13 +3,16 @@ import numpy as np
 
 cv2.startWindowThread() # Start the Window
 cap = cv2.VideoCapture(-1, cv2.CAP_V4L2) # Start the Capture
+
 # Check if the webcam is opened correctly
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
 
 while True:
+
     ret, frame = cap.read() # Read the input video
-    frame = cv2.resize(frame, None, fx=1, fy=1, interpolation=cv2.INTER_AREA) # Resize the frame
+
+    frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA) # Resize the frame
     cv2.imshow('Input', frame) # Display the Frame
     gray = cv2.cvtColor(np.float32(frame), cv2.COLOR_BGR2GRAY) # Make the Frame gray
     
@@ -18,8 +21,8 @@ while True:
 
     # detects people in the input image
     gray = np.array(gray, dtype = 'uint8')
+    People = Person_cascade.detectMultiScale(gray, 1.7, 5, 0) # Find People in the Image
 
-    People = Person_cascade.detectMultiScale(gray, 1.1, 2, 0) # Find People in the Image
     print('Number of detected People:', len(People))
 
     # loop over all the detected people
