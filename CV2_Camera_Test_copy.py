@@ -3,7 +3,7 @@ import numpy as np
 
 cv2.startWindowThread() # Start the Window
 cap = cv2.VideoCapture(-1, cv2.CAP_V4L2) # Start the Capture
-
+cap.set(cv2.CAP_PROP_FPS, 24) # Set the FPS
 # Check if the webcam is opened correctly
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
