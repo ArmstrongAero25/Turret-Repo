@@ -26,7 +26,7 @@ while True:
     for (x,y,w,h) in People:
 
         # To draw a rectangle around the detected face  
-        cv2.rectangle(cap,(x,y),(x+w,y+h),(0,255,255),2)
+        cv2.rectangle(gray,(x,y),(x+w,y+h),(0,255,255),2)
 
 
     c = cv2.waitKey(1)
