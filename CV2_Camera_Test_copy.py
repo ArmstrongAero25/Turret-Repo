@@ -5,8 +5,8 @@ import threading
 cv2.startWindowThread() # Start the Window
 cap = cv2.VideoCapture(-1, cv2.CAP_V4L2) # Start the Capture
 cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-cap.set(cv2.CAP_PROP_FPS, 30)
-cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+cap.set(cv2.CAP_PROP_FPS, 24)
+cap.set(cv2.CAP_PROP_BUFFERSIZE, 2)
 # Check if the webcam is opened correctly
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
@@ -24,7 +24,7 @@ while True:
 
     # detects people in the input image
     gray = np.array(gray, dtype = 'uint8')
-    People = Person_cascade.detectMultiScale(gray, 1.7, 5, 0) # Find People in the Image
+    People = Person_cascade.detectMultiScale(gray, 1.05, 1, 0) # Find People in the Image
 
     print('Number of detected People:', len(People))
 
