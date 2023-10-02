@@ -5,7 +5,7 @@ from gfd.py.video.capture import VideoCaptureThreading
 cv2.startWindowThread() #make the window
 cap = VideoCaptureThreading() # Start the Capture
 
-#cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 
 cap.set(cv2.CAP_PROP_FPS, 30)
 cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
@@ -13,7 +13,7 @@ cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 cap.start()
 while True:
 
-    frame = cap.read() # Read the input video
+    ret, frame = cap.read() # Read the input video
 
     #frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA) # Resize the frame
 
