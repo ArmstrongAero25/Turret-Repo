@@ -5,7 +5,7 @@ from gfd.py.video.capture import VideoCaptureThreading
 cv2.startWindowThread() #make the window
 cap = VideoCaptureThreading() # Start the Capture
 
-cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+#cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 
 cap.set(cv2.CAP_PROP_FPS, 30)
 cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
