@@ -3,15 +3,17 @@ import numpy as np
 from gfd.py.video.capture import VideoCaptureThreading
 
 cv2.startWindowThread() # Start the Window
-cap = cv2.VideoCaptureThreading(-1, cv2.CAP_V4L2) # Start the Capture
+cap = VideoCaptureThreading(0, cv2.CAP_V4L2) # Start the Capture
+
 cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 cap.set(cv2.CAP_PROP_FPS, 24)
-cap.set(cv2.CAP_PROP_BUFFERSIZE, 2)
+cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+
 # Check if the webcam is opened correctly
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
 
-cao.start()
+cap.start()
 while True:
 
     ret, frame = cap.read() # Read the input video
