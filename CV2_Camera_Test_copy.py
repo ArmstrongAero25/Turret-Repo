@@ -12,7 +12,7 @@ cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 cap.start()
 while True:
 
-    ret, frame = cap.read() # Read the input video
+    ret, frame = cap.read() # Read the input video/stream
     frame = cv2.resize(frame, None, fx=0.6, fy=0.5, interpolation=cv2.INTER_AREA) # Resize the frame
     gray = cv2.cvtColor(np.float32(frame), cv2.COLOR_BGR2GRAY) # Make the Frame gray
         
@@ -28,10 +28,13 @@ while True:
     for (x,y,w,h) in People:
         # To draw a rectangle around the detected person  
         cv2.rectangle(gray,(x,y),(x+w,y+h),(0,255,255),2)
+        
+    cv2.imshow('Output', frame) # Display the Frame
 
+    # Stop the code when the ESC key is pressed.
     c = cv2.waitKey(1)
     if c == 27:
         break
-    cv2.imshow('Output', frame) # Display the Frame
-    cap.stop()
+
+cap.stop()
 cv2.destroyAllWindows()
