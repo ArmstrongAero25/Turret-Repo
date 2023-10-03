@@ -25,7 +25,7 @@ while True:
 
     # detects people in the input image
     gray = np.array(gray, dtype = 'uint8')
-    People = Person_cascade.detectMultiScale(gray, 1.3, 3, 0) # Find People in the Image
+    People = Person_cascade.detectMultiScale(gray, 2.0, 3, 40) # Find People in the Image
     print('Number of detected People:', len(People))
 
     # loop over all the detected people
