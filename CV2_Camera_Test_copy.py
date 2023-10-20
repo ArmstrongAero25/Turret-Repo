@@ -36,6 +36,6 @@ while True:
 
     cap.stop()
 
-cv2.imshow('Output', gray) # Display the Frame
+    cv2.imshow('Output', gray) # Display the Frame
 
 cv2.destroyAllWindows()
