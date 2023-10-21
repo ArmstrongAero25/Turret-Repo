@@ -6,7 +6,7 @@ cv2.startWindowThread() #make the window
 cap = VideoCaptureThreading(cv2.CAP_V4L2) # Start the Capture
 
 cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-cap.set(cv2.CAP_PROP_FPS, 30)
+cap.set(cv2.CAP_PROP_FPS, 24)
 cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
 cap.start()
@@ -24,20 +24,16 @@ while True:
     print('Number of detected People:', len(People))
 
     # loop over all the detected people
-    for (x,y,w,h) in People:
+    #for (x,y,w,h) in People:
         # To draw a rectangle around the detected person  
-        cv2.rectangle(gray,(x,y),(x+w,y+h),(0,255,255),2)
+        #cv2.rectangle(gray,(x,y),(x+w,y+h),(0,255,255),2)
         
     cv2.imshow('Output', gray) # Display the Frame
-    
+
     # Stop the code when the ESC key is pressed.
     c = cv2.waitKey(1)
     if c == 27:
         cap.stop()
+        cap.release()
+        cv2.destroyAllWindows()
         break
-
-cap.stop()
-
-    
-
-cv2.destroyAllWindows()
