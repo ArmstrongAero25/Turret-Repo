@@ -28,14 +28,16 @@ while True:
         # To draw a rectangle around the detected person  
         cv2.rectangle(gray,(x,y),(x+w,y+h),(0,255,255),2)
         
+    cv2.imshow('Output', gray) # Display the Frame
     
     # Stop the code when the ESC key is pressed.
     c = cv2.waitKey(1)
     if c == 27:
+        cap.stop()
         break
 
-    cap.stop()
+cap.stop()
 
-    cv2.imshow('Output', gray) # Display the Frame
+    
 
 cv2.destroyAllWindows()
