@@ -17,6 +17,12 @@ while True:
         
     # read haacascade to detect people in input image
     Person_cascade = cv2.CascadeClassifier("Desktop/haarcascade_upperbody.xml")
+    # TODO: List the bread crumbs that lead up to the project contenents (the xml file in this case) instead of accessing the desktop.
+    # For example: Say the main file was in /Python(the projects directory)/BOT(the directory in the projects directory
+    # containing the files for the actual project) and it needed
+    # to access a text file: you'd want to specify the bread crumbs that lead up to the contenents of the text file
+    # and if it's in the same folder as the main file you should accomodate for that as well.
+    # /Python/BOT/token.txt is accessed from /Python/BOT/main
 
     # detects people in the input image
     gray = np.array(gray, dtype = 'uint8')
