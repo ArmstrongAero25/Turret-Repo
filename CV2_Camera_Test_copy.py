@@ -31,9 +31,9 @@ while True:
     print('Number of detected People:', len(People))
 
     # loop over all the detected people
-    #for (x,y,w,h) in People:
-        # To draw a rectangle around the detected person  
-        #cv2.rectangle(gray,(x,y),(x+w,y+h),(0,255,255),2)
+    for (x,y,w,h) in People:
+        #To draw a rectangle around the detected person  
+        cv2.rectangle(gray,(x,y),(x+w,y+h),(0,255,255),2)
         
     cv2.imshow('Output', gray) # Display the Frame
 
