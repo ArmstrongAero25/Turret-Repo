@@ -10,7 +10,8 @@ cap.set(cv2.CAP_PROP_FPS, 24)
 cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
 cap.start()
-while True:
+c = cv2.waitKey(1)
+while c != 27:
 
     ret, frame = cap.read() # Read the input video/stream
     gray = cv2.cvtColor(np.float32(frame), cv2.COLOR_BGR2GRAY) # Make the Frame gray
@@ -37,9 +38,7 @@ while True:
     cv2.imshow('Output', gray) # Display the Frame
 
     # Stop the code when the ESC key is pressed.
-    c = cv2.waitKey(1)
-    if c == 27:
-        cap.stop()
-        cap.release()
-        cv2.destroyAllWindows()
-        break
+
+cap.stop()
+cap.release()
+cv2.destroyAllWindows()
