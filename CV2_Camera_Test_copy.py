@@ -14,9 +14,10 @@ while True:
 
     ret, frame = cap.read() # Read the input video/stream
     gray = cv2.cvtColor(np.float32(frame), cv2.COLOR_BGR2GRAY) # Make the Frame gray
-        
+    gray = cv2.threshold(gray,70,255,0) 
     # read haacascade to detect people in input image
     Person_cascade = cv2.CascadeClassifier("Desktop/haarcascade_upperbody.xml")
+    
     # TODO: List the bread crumbs that lead up to the project contenents (the xml file in this case) instead of accessing the desktop.
     # For example: Say the main file was in /Python(the projects directory)/BOT(the directory in the projects directory
     # containing the files for the actual project) and it needed
