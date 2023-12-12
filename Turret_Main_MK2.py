@@ -5,12 +5,24 @@ import time
 from multiprocessing import Process, Queue
 import pygame
 
-def init_camera(width, height, fps_min):
+def init_camera(width, height, fps_min, frame_queue):
     cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
     cap.set(3, width)
     cap.set(4, height)
     cap.set(cv2.CAP_PROP_FPS, fps_min)
-    return cap
+
+    # Start a separate process for capturing frames
+    capture_process = Process(target=capture_frames, args=(cap, frame_queue))
+    capture_process.start()
+
+    return cap, capture_process
+
+def capture_frames(cap, queue):
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        queue.put(frame)
 
 def control_servos(target_x, target_y, center_x, center_y, pan_servo_position, tilt_servo_position, servo_speed, kit):
     delta_x = center_x - target_x
@@ -24,13 +36,6 @@ def control_servos(target_x, target_y, center_x, center_y, pan_servo_position, t
 
     kit.servo[0].angle = pan_servo_position
     kit.servo[1].angle = tilt_servo_position
-
-def capture_frames(cap, queue):
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
-        queue.put(frame)
 
 def detect_objects(frame, net, confidence_threshold=0.2):
     height, width = frame.shape[:2]
@@ -69,7 +74,9 @@ def main():
     fps_min, fps_max = 30, 60
 
     kit = ServoKit(channels=16)
-    cap = init_camera(width, height, fps_min)
+    frame_queue = Queue()
+
+    cap, capture_process = init_camera(width, height, fps_min, frame_queue)
 
     # Download the MobileNet SSD model
     net = cv2.dnn.readNetFromCaffe(
@@ -80,11 +87,6 @@ def main():
     center_x, center_y = width // 2, height // 2
     pan_servo_position, tilt_servo_position = 90, 90
     servo_speed = 10
-
-    frame_queue = Queue()
-
-    frame_process = Process(target=capture_frames, args=(cap, frame_queue))
-    frame_process.start()
 
     while True:
         if not frame_queue.empty():
@@ -107,9 +109,14 @@ def main():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-    frame_process.terminate()
-    frame_process.join()
+    # Terminate the capture process
+    capture_process.terminate()
+    capture_process.join()
+
+    # Release the camera
     cap.release()
+
+    # Close all OpenCV windows
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
