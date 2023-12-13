@@ -37,45 +37,6 @@ def control_servos(target_x, target_y, center_x, center_y, pan_servo_position, t
     kit.servo[0].angle = pan_servo_position
     kit.servo[1].angle = tilt_servo_position
 
-import cv2
-from adafruit_servokit import ServoKit
-import numpy as np
-import time
-from multiprocessing import Process, Queue
-import pygame
-
-def init_camera(width, height, fps_min, frame_queue):
-    cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
-    cap.set(3, width)
-    cap.set(4, height)
-    cap.set(cv2.CAP_PROP_FPS, fps_min)
-
-    # Start a separate process for capturing frames
-    capture_process = Process(target=capture_frames, args=(cap, frame_queue))
-    capture_process.start()
-
-    return cap, capture_process
-
-def capture_frames(cap, queue):
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
-        queue.put(frame)
-
-def control_servos(target_x, target_y, center_x, center_y, pan_servo_position, tilt_servo_position, servo_speed, kit):
-    delta_x = center_x - target_x
-    delta_y = center_y - target_y
-
-    pan_servo_position += delta_x // servo_speed
-    tilt_servo_position += delta_y // servo_speed
-
-    pan_servo_position = max(0, min(180, pan_servo_position))
-    tilt_servo_position = max(0, min(180, tilt_servo_position))
-
-    kit.servo[0].angle = pan_servo_position
-    kit.servo[1].angle = tilt_servo_position
-
 def detect_objects(frame, net, confidence_threshold=0.2):
     height, width = frame.shape[:2]
 
@@ -133,6 +94,7 @@ def main():
 
             # Detect objects in the frame
             object_box = detect_objects(frame, net)
+            time.sleep(0.01)
 
             if object_box is not None:
                 (startX, startY, endX, endY) = object_box
