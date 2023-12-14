@@ -6,7 +6,7 @@ from multiprocessing import Process, Queue
 import pygame
 
 def init_camera(width, height, fps_min, frame_queue):
-    cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW) # Change Between DSHOW and V4L2 to see which has better results.
     cap.set(3, width)
     cap.set(4, height)
     cap.set(cv2.CAP_PROP_FPS, fps_min)
