@@ -107,7 +107,7 @@ def main():
 
                 cv2.imshow('Frame', frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(3) & 0xFF == ord('q'):
             break
 
     # Terminate the capture process
