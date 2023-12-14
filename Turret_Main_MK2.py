@@ -94,7 +94,7 @@ def main():
 
             # Detect objects in the frame
             object_box = detect_objects(frame, net)
-            time.sleep(0.01)
+            time.sleep(0.03)
 
             if object_box is not None:
                 (startX, startY, endX, endY) = object_box
