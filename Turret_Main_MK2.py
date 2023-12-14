@@ -1,3 +1,4 @@
+@ -0,0 +1,116 @@
 import cv2
 from adafruit_servokit import ServoKit
 import numpy as np
@@ -5,24 +6,12 @@ import time
 from multiprocessing import Process, Queue
 import pygame
 
-def init_camera(width, height, fps_min, frame_queue):
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW) # Change Between DSHOW and V4L2 to see which has better results.
+def init_camera(width, height, fps_min):
+    cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
     cap.set(3, width)
     cap.set(4, height)
     cap.set(cv2.CAP_PROP_FPS, fps_min)
-
-    # Start a separate process for capturing frames
-    capture_process = Process(target=capture_frames, args=(cap, frame_queue))
-    capture_process.start()
-
-    return cap, capture_process
-
-def capture_frames(cap, queue):
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
-        queue.put(frame)
+    return cap
 
 def control_servos(target_x, target_y, center_x, center_y, pan_servo_position, tilt_servo_position, servo_speed, kit):
     delta_x = center_x - target_x
@@ -36,6 +25,13 @@ def control_servos(target_x, target_y, center_x, center_y, pan_servo_position, t
 
     kit.servo[0].angle = pan_servo_position
     kit.servo[1].angle = tilt_servo_position
+
+def capture_frames(cap, queue):
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        queue.put(frame)
 
 def detect_objects(frame, net, confidence_threshold=0.2):
     height, width = frame.shape[:2]
@@ -71,12 +67,10 @@ def play_notification_sound():
 
 def main():
     width, height = 640, 480
-    fps_min, fps_max = 24, 60
+    fps_min, fps_max = 30, 60
 
     kit = ServoKit(channels=16)
-    frame_queue = Queue()
-
-    cap, capture_process = init_camera(width, height, fps_min, frame_queue)
+    cap = init_camera(width, height, fps_min)
 
     # Download the MobileNet SSD model
     net = cv2.dnn.readNetFromCaffe(
@@ -88,16 +82,17 @@ def main():
     pan_servo_position, tilt_servo_position = 90, 90
     servo_speed = 10
 
+    frame_queue = Queue()
+
+    frame_process = Process(target=capture_frames, args=(cap, frame_queue))
+    frame_process.start()
+
     while True:
         if not frame_queue.empty():
             frame = frame_queue.get()
 
             # Detect objects in the frame
             object_box = detect_objects(frame, net)
-<<<<<<< Updated upstream
-            time.sleep(0.03)
-=======
->>>>>>> Stashed changes
 
             if object_box is not None:
                 (startX, startY, endX, endY) = object_box
@@ -108,30 +103,15 @@ def main():
                 # Play notification sound
                 play_notification_sound()
 
-<<<<<<< Updated upstream
-                cv2.imshow('Frame', frame)
-
-        if cv2.waitKey(3) & 0xFF == ord('q'):
-=======
             cv2.imshow('Frame', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
->>>>>>> Stashed changes
             break
 
-    # Terminate the capture process
-    capture_process.terminate()
-    capture_process.join()
-
-    # Release the camera
+    frame_process.terminate()
+    frame_process.join()
     cap.release()
-
-    # Close all OpenCV windows
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-<<<<<<< Updated upstream
     main()
-=======
-    main()
->>>>>>> Stashed changes
