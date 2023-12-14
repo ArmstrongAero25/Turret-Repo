@@ -105,7 +105,7 @@ def main():
                 # Play notification sound
                 play_notification_sound()
 
-            cv2.imshow('Frame', frame)
+                cv2.imshow('Frame', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
