@@ -6,7 +6,7 @@ import numpy as np
 import pygame
 
 def init_camera(width, height, fps_min):
-    cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     cap.set(3, width)
     cap.set(4, height)
     cap.set(cv2.CAP_PROP_FPS, fps_min)
