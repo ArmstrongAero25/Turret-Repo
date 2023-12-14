@@ -94,7 +94,10 @@ def main():
 
             # Detect objects in the frame
             object_box = detect_objects(frame, net)
+<<<<<<< Updated upstream
             time.sleep(0.03)
+=======
+>>>>>>> Stashed changes
 
             if object_box is not None:
                 (startX, startY, endX, endY) = object_box
@@ -105,9 +108,15 @@ def main():
                 # Play notification sound
                 play_notification_sound()
 
+<<<<<<< Updated upstream
                 cv2.imshow('Frame', frame)
 
         if cv2.waitKey(3) & 0xFF == ord('q'):
+=======
+            cv2.imshow('Frame', frame)
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+>>>>>>> Stashed changes
             break
 
     # Terminate the capture process
@@ -121,4 +130,8 @@ def main():
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
+<<<<<<< Updated upstream
     main()
+=======
+    main()
+>>>>>>> Stashed changes
