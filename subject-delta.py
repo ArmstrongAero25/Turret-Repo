@@ -30,7 +30,7 @@ def Main():
             cv2.rectangle(frame, (xA, yA), (xB, yB),(0, 255, 0), 2)
             if cv2.rectangle:
                 print("Detected")
-                turn_servo(xA, yA, xB, yB)
+                turn_servo(xA, yA, xB, yB, kit)
             
         
     
