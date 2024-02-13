@@ -32,7 +32,7 @@ def Main():
 
 def find_People(frame):
         frame = cv2.resize(frame, (width, height))    
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY) # Why is this here? gray variable isn't used?
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
     
         boxes, weights = hog.detectMultiScale(gray, winStride=(8,8) )
