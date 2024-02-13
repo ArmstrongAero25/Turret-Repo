@@ -18,7 +18,7 @@ def Main():
         
         ret, frame = cap.read()   
         frame = cv2.resize(frame, (width, height))    
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY) # Why is this here? gray variable isn't used?
 
     
         boxes, weights = hog.detectMultiScale(frame, winStride=(8,8) )
