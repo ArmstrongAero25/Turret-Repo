@@ -11,17 +11,31 @@ def Main():
 
     cv2.startWindowThread()
     cap = cv2.VideoCapture(0)
+    if not cap.isOpened:
+        print('--(!)Error opening video capture')
+        exit(0)
 
     kit = ServoKit(channels=16)
 
     while(True):
         
-        ret, frame = cap.read()   
+        ret, frame = cap.read()
+        if frame is None:
+            print('--(!) No captured frame -- Break!')
+            break
+        find_People(frame)
+
+
+    cap.release() # Release Capture
+    cv2.destroyAllWindows() # Destroy Window
+    cv2.waitKey(1)
+
+def find_People(frame):
         frame = cv2.resize(frame, (width, height))    
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY) # Why is this here? gray variable isn't used?
 
     
-        boxes, weights = hog.detectMultiScale(frame, winStride=(8,8) )
+        boxes, weights = hog.detectMultiScale(gray, winStride=(8,8) )
 
         boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
 
@@ -32,18 +46,10 @@ def Main():
                 print("Detected")
                 turn_servo(xA, yA, xB, yB, kit)
             
-        
-    
-        
-        
         cv2.imshow('frame',frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-
-    cap.release() # Release Capture
-    cv2.destroyAllWindows() # Destroy Window
-    cv2.waitKey(1)
 
 def turn_servo(xA, yA, xB, yB, kit):
     servo_speed = 10
