@@ -3,9 +3,11 @@ import cv2
 from adafruit_servokit import ServoKit
 
 def Main():
-
+    
     width, height = 640, 480
-
+    kit = ServoKit(channels=16)
+    servo_speed = 10
+    
     hog = cv2.HOGDescriptor()
     hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
@@ -15,12 +17,13 @@ def Main():
         print('--(!)Error opening video capture')
         exit(0)
 
-    kit = ServoKit(channels=16)
-
     while(True):
 
         ret, frame = cap.read()
-        if frame is None:
+        if not ret:
+            break
+        
+        elif frame is None:
             print('--(!) No captured frame -- Break!')
             break
         find_People(frame)
@@ -34,8 +37,7 @@ def Main():
     cv2.destroyAllWindows() # Destroy Window
     cv2.waitKey(1)
 
-def find_People(frame, kit):
-     width, height = 640, 480
+def find_People(frame, kit, servo_speed, hog, width, height):
      frame = cv2.resize(frame, (width, height))
      gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
@@ -46,11 +48,10 @@ def find_People(frame, kit):
         cv2.rectangle(frame, (xA, yA), (xB, yB),(0, 255, 0), 2)
         if cv2.rectangle:
             print("Detected")
-            turn_servo(xA, yA, xB, yB, kit)
+            turn_servo(xA, yA, xB, yB, kit, servo_speed)
 
 
-def turn_servo(xA, yA, xB, yB, kit):
-    servo_speed = 10
+def turn_servo(xA, yA, xB, yB, kit, servo_speed):
     DeltaX = xA - xB // servo_speed
     DeltaY = yA - yB // servo_speed
 
