@@ -2,7 +2,7 @@ import numpy as np
 import time
 import cv2
 from adafruit_servokit import ServoKit
-import pygame
+import vlc
 
 
 def Main():
@@ -57,12 +57,10 @@ def find_People(frame, kit, servo_speed, hog, width, height):
     return frame
 
 def PlayBuildSound():
-    pygame.mixer.init()
-    pygame.mixer.music.load("BuildinASentry.mp3")  # Change this to the path of your notification sound file
-    pygame.mixer.music.play()
-    time.sleep(2)  # Adjust the sleep time based on the duration of your notification sound
-
-
+    p = vlc.MediaPlayer("BuildinASentry.mp3")
+    p.play()
+    time.sleep(2)
+    p.stop()
 def turn_servo(xA, yA, xB, yB, kit, servo_speed):
     DeltaX = xA - xB // servo_speed
     DeltaY = yA - yB // servo_speed
