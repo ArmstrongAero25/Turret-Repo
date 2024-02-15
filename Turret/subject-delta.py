@@ -23,7 +23,6 @@ def Main():
     PlayBuildSound()
     
     while (True):
-
         ret, frame = cap.read()
         if not ret:
             break
@@ -31,6 +30,7 @@ def Main():
         elif frame is None:
             print('--(!) No captured frame -- Break!')
             break
+            
         find_People(frame, hog, width, height, kit, servo_speed)
 
         cv2.imshow('frame', frame)
@@ -42,12 +42,13 @@ def Main():
         cv2.waitKey(1)
 
 
-def find_People(frame, kit, servo_speed, hog, width, height):
+def find_People(frame, kit, servo_speed, hog, width, height):   
     frame = cv2.resize(frame, (width, height))
     gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
     
     boxes, weights = hog.detectMultiScale(gray, winStride=(8, 8))
     boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
+    
     for (xA, yA, xB, yB) in boxes:
         cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
         if cv2.rectangle:
@@ -61,6 +62,7 @@ def PlayBuildSound():
     p.play()
     time.sleep(2)
     p.stop()
+    
 def turn_servo(xA, yA, xB, yB, kit, servo_speed):
     DeltaX = xA - xB // servo_speed
     DeltaY = yA - yB // servo_speed
