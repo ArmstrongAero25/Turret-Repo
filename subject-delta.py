@@ -61,8 +61,8 @@ def find_People(frame, hog, width, height, kit, servo_speed):
 
 def turn_servo(xA, yA, xB, yB, kit, servo_speed):
 
-    pan_servo_position = 90  # Initialize pan servo position
-    tilt_servo_position = 90  # Initialize tilt servo position
+    pan_servo_position = 0  # Initialize pan servo position
+    tilt_servo_position = 0  # Initialize tilt servo position
 
     DeltaX = (xA + xB) // servo_speed
     DeltaY = (yA + yB) // servo_speed
