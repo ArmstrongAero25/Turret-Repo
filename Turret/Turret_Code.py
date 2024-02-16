@@ -4,6 +4,8 @@ from adafruit_servokit import ServoKit
 
 
 def main():
+    # This is the program entry point.
+
     print("HELLO WORLD")
     width, height = 640, 480
     kit = ServoKit(channels=16)
@@ -27,7 +29,7 @@ def main():
             print("BAD")
             break
 
-        elif frame is None:  # Calm1403: "You could also use 'elif not frame' I think."
+        elif frame is None:
             print('--(!) No captured frame -- Break!')
             break
 
@@ -37,18 +39,18 @@ def main():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-    cap.release()  # Release Capture
-    cv2.destroyAllWindows()  # Destroy Window
+    cap.release()
+    cv2.destroyAllWindows()
     cv2.waitKey(1)
 
 
 def find_People(frame, hog, width, height, kit, servo_speed):
+    # This will find a target within a given frame.
 
     frame = cv2.resize(frame, (width, height))
     gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
-    # HEXA-SOFTWARE-DEV: I'm going to have to see what this 'weights' variable is, it isn't called anywhere, do I need it?
-    boxes, _ = hog.detectMultiScale(gray, winStride=(8, 8))  # I define weights as "_" to signify that it is a unused return value.
+    boxes, _ = hog.detectMultiScale(gray, winStride=(8, 8))
     boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
 
     for (xA, yA, xB, yB) in boxes:
@@ -61,9 +63,10 @@ def find_People(frame, hog, width, height, kit, servo_speed):
 
 
 def turn_servo(xA, yA, xB, yB, kit, servo_speed):
+    # This will turn the servo by the given coordinates.
 
-    pan_servo_position = 0  # Initialize pan servo position
-    tilt_servo_position = 0  # Initialize tilt servo position
+    pan_servo_position = 0
+    tilt_servo_position = 0
 
     DeltaX = (xA + xB) // servo_speed
     DeltaY = (yA + yB) // servo_speed
