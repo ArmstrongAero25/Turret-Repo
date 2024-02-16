@@ -48,7 +48,7 @@ def find_People(frame, hog, width, height, kit, servo_speed):
     gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
     # HEXA-SOFTWARE-DEV: I'm going to have to see what this 'weights' variable is, it isn't called anywhere, do I need it?
-    boxes, weights = hog.detectMultiScale(gray, winStride=(8, 8))
+    boxes, _ = hog.detectMultiScale(gray, winStride=(8, 8))  # I define weights as "_" to signify that it is a unused return value.
     boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
 
     for (xA, yA, xB, yB) in boxes:
