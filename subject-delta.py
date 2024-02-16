@@ -22,6 +22,7 @@ def Main():
 
         ret, frame = cap.read()
         if not ret:
+            print("BAD")
             break
 
         elif frame is None:
