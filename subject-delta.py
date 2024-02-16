@@ -4,7 +4,7 @@ from adafruit_servokit import ServoKit
 
 
 def Main():
-
+    print("HELLO WORLD")
     width, height = 640, 480
     kit = ServoKit(channels=16)
     servo_speed = 10
