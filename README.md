@@ -2,7 +2,7 @@
 
 This repo is for a small project I am working on:
 
-The aim is to build and program a fully operational sentry turret/gun (It's a NERF gun!!!)
+The aim is to build and program a fully operational sentry turret/gun with real time person identification, using opencv and python with a rapsberry pi 4 (It's a NERF gun!!!)
 
 This is a huge WIP but there will be many improvements to come.
 
