@@ -13,7 +13,7 @@ def main():
     hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
     cv2.startWindowThread()
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
 
     if not cap.isOpened():
 
