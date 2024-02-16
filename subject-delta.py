@@ -17,7 +17,7 @@ def Main():
 
     if not cap.isOpened():
 
-        print('--(!)Error opening video capture')
+        print("--(!)Error opening video capture")
         exit(0)
 
     while True:
