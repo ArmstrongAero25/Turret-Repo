@@ -27,7 +27,7 @@ def main():
             print("BAD")
             break
 
-        elif frame is None:
+        elif frame is None:  # Calm1403: "You could also use 'elif not frame' I think."
             print('--(!) No captured frame -- Break!')
             break
 
