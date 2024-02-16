@@ -3,7 +3,7 @@ import cv2
 from adafruit_servokit import ServoKit
 
 
-def Main():
+def main():
     print("HELLO WORLD")
     width, height = 640, 480
     kit = ServoKit(channels=16)
@@ -78,4 +78,4 @@ def turn_servo(xA, yA, xB, yB, kit, servo_speed):
 
 
 if __name__ == "__main__":
-    Main()
+    main()
