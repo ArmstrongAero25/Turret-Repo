@@ -29,6 +29,9 @@ def main():
         # print("BAD")
         # break
 
+        # calm1403: ret -> "return" | "success"
+        # https://stackoverflow.com/questions/65535939/python-understanding-read-in-opencv | first response down.
+
         if frame is None:
             print('--(!) No captured frame -- Break!')
             break
