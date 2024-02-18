@@ -14,7 +14,7 @@ def main():
     hog = cv2.HOGDescriptor()
     hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
-    cv2.startWindowThread()
+    # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out the Headless version of OpenCV python doesn't require this, so I'm temporarily removing all things to do with window display.
     cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
 
     if not cap.isOpened():
@@ -35,12 +35,12 @@ def main():
 
         frame = find_People(frame, hog, width, height, kit, servo_speed)
 
-        cv2.imshow('frame', frame)
+        # cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
     cap.release()
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
     cv2.waitKey(1)
 
 
