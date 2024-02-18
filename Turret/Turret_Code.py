@@ -25,11 +25,11 @@ def main():
     while True:
 
         ret, frame = cap.read()
-        if not ret:
-            print("BAD")
-            break
+        # if not ret: HEXA-SOFTWARE-DEV: Got an error that ret wasn't a thing, I beleive it it associated with the window thread?
+        # print("BAD")
+        # break
 
-        elif frame is None:
+        if frame is None:
             print('--(!) No captured frame -- Break!')
             break
 
@@ -41,7 +41,7 @@ def main():
 
     cap.release()
     # cv2.destroyAllWindows()
-    cv2.waitKey(1)
+    # cv2.waitKey(1)
 
 
 def find_People(frame, hog, width, height, kit, servo_speed):
