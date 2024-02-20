@@ -6,7 +6,7 @@ from adafruit_servokit import ServoKit
 def main():
     # This is the program entry point.
 
-    print("HELLO WORLD")
+    print("--(note) Initialising..")
     width, height = 640, 480
     kit = ServoKit(channels=16)
     servo_speed = 10
@@ -18,21 +18,19 @@ def main():
     cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
 
     if not cap.isOpened():
-
-        print("--(!)Error opening video capture")
+        print("--(!) Error opening video capture.")
         exit(0)
+
+    print("--(note) Initialisation successful.")
 
     while True:
 
-        ret, frame = cap.read()
-        # if not ret: HEXA-SOFTWARE-DEV: Got an error that ret wasn't a thing, I beleive it it associated with the window thread?
-        # print("BAD")
-        # break
+        success, frame = cap.read()
+        # Success contains a value to convey if the data was returned successfully.
 
-        # calm1403: ret -> "return" | "success"
-        # https://stackoverflow.com/questions/65535939/python-understanding-read-in-opencv | first response down.
-
-        if frame is None:
+        if not (success):
+            # This is essentually the same except it's a little more readable.
+            # Original line: if success is None:
             print('--(!) No captured frame -- Break!')
             break
 
@@ -40,6 +38,10 @@ def main():
 
         # cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
+            # Calm1403: This is a guess but..
+            # 0xFF -> 255, 255 -> 11111111 .: condition = ans(cv2.waitkey(1)) & 11111111 == (1000111?)
+            # & => "Sets each bit to 1 if both bits are 1"
+            # This is some crazy arithmetic.. all done in a milisecond too, this method is impresive.
             break
 
     cap.release()
@@ -59,7 +61,10 @@ def find_People(frame, hog, width, height, kit, servo_speed):
     for (xA, yA, xB, yB) in boxes:
 
         cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
-        print("Detected")
+        # Calm1403: Frame data | Cord data xA, yA | xB, yB | green colour value | box width?
+        # What do the terms xA -> yB represent? They're the coords of the people in the frame
+        # but why are there two respective values for x and y?
+        print("--(note) Person detected -- Turning servo.")
         turn_servo(xA, yA, xB, yB, kit, servo_speed)
 
     return frame
@@ -82,6 +87,9 @@ def turn_servo(xA, yA, xB, yB, kit, servo_speed):
 
     kit.servo[0].angle = pan_servo_position
     kit.servo[1].angle = tilt_servo_position
+
+    # Calm1403: Here I like to visualise one of those navy turrets they have on warships turning up and down.
+    # It's a nice visualisation.
 
 
 if __name__ == "__main__":
