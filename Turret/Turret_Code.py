@@ -22,7 +22,7 @@ def main():
         print("--(!) Error opening video capture.")
         exit(0)
 
-    media = vlc.MediaPlayer("Turret_BuildinASentry.mp3")
+    media = vlc.MediaPlayer("BuildinASentry.mp3")
     # If the rpi doesn't have a bulitin speaker this may not work.
     media.play()
 
