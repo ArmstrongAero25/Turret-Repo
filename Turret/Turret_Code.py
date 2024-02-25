@@ -1,4 +1,5 @@
 import numpy as np
+import vlc  # NOTE: pip install python-vlc
 import cv2
 from adafruit_servokit import ServoKit
 
@@ -20,6 +21,10 @@ def main():
     if not cap.isOpened():
         print("--(!) Error opening video capture.")
         exit(0)
+
+    media = vlc.MediaPlayer("Turret_BuildinASentry.mp3")
+    # If the rpi doesn't have a bulitin speaker this may not work.
+    media.play()
 
     print("--(note) Initialisation successful.")
 
