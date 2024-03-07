@@ -84,8 +84,8 @@ def turn_servo(xA, yA, xB, yB, kit, servo_speed):
     DeltaX = (xA + xB) // servo_speed
     DeltaY = (yA + yB) // servo_speed
 
-    pan_servo_position += DeltaX
-    tilt_servo_position += DeltaY
+    pan_servo_position = DeltaX
+    tilt_servo_position = DeltaY
 
     pan_servo_position = max(0, min(180, pan_servo_position))
     tilt_servo_position = max(0, min(180, tilt_servo_position))
