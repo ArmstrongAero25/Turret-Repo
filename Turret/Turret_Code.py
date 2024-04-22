@@ -23,7 +23,7 @@ def main():
         exit(0)
 
     media = vlc.MediaPlayer("BuildinASentry.mp3")
-    # If the rpi doesn't have a bulitin speaker this may not work.
+    # If the rpi doesn't have a bulit in speaker this may not work.
     media.play()
 
     print("--(note) Initialisation successful.")
