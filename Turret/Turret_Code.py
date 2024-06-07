@@ -38,6 +38,7 @@ def main():
 
         if not success:
             print('--(!) No captured frame -- Break!')
+            print(success)
             break
         elif success == True:
             print("Success!")
