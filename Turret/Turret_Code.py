@@ -40,7 +40,7 @@ def main():
 
         if not success:
             print('--(!) No captured frame -- Break!')
-            print(success)
+            print(success, frame)
             break
 
         else:
