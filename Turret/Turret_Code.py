@@ -8,7 +8,8 @@ import cv2
 def main():
     # This is the program entry point.
     print("--(note) Initialising..")
-    width, height = 640, 480
+    width = 640
+    height = 480
     kit = ServoKit(channels=16)
     servo_speed = 10
 
