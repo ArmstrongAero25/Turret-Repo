@@ -39,7 +39,7 @@ def main():
         if not success:
             print('--(!) No captured frame -- Break!')
             break
-        elif:
+        else:
             print("Success!")
         find_people(frame, hog, servo_speed)
 
