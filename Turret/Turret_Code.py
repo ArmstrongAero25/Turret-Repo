@@ -20,8 +20,8 @@ def main():
     # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out
     # the Headless version of OpenCV python doesn't require this,
     # so I'm temporarily removing all things to do with window display.
-    cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
-
+    # cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
+    cap = cv2.VideoCapture("Turret\Test VIDS\crowd.mp4")
     if cap.isOpened():
         print("Capturing")
 
