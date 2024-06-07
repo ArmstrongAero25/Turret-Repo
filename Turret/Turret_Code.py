@@ -36,7 +36,7 @@ def main():
         success, frame = cap.read()
         # Success contains a value to convey if the data was returned successfully.
 
-        if (success):
+        if not (success):
             print('--(!) No captured frame -- Break!')
             break
 
