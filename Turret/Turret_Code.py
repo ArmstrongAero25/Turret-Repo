@@ -27,9 +27,9 @@ def main():
     else:
         cap.open()
 
-    media = vlc.MediaPlayer("Sounds/BuildinASentry.mp3")
+    # media = vlc.MediaPlayer("Sounds/BuildinASentry.mp3")
     # If the rpi doesn't have a bulit in speaker this may not work.
-    media.play()
+    # media.play()
 
     print("--(note) Initialisation successful.")
 
