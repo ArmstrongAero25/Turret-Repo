@@ -57,6 +57,7 @@ def find_people(frame, hog, width, height, servo_speed):
     # This will find a target within a given frame.
 
     # frame = cv2.resize(frame, (width, height))
+    frame = np.array(frame, dtype=np.uint8)
     gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
     boxes, _ = hog.detectMultiScale(gray, winStride=(8, 8))
