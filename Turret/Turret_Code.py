@@ -40,9 +40,11 @@ def main():
             print('--(!) No captured frame -- Break!')
             print(success)
             break
+
         elif success == True:
             print("Success!")
-        find_people(frame, hog, servo_speed)
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            find_people(gray, hog, servo_speed)
 
         # cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -53,14 +55,8 @@ def main():
     # cv2.waitKey(1)
 
 
-def find_people(frame, hog, servo_speed):
+def find_people(gray, hog, servo_speed):
     # This will find a target within a given frame.
-    try:
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    except Exception as e:
-        print(e)
-
     boxes, _ = hog.detectMultiScale(gray, winStride=(8, 8))
     boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
 
