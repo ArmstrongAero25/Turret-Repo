@@ -20,10 +20,12 @@ def main():
     # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out
     # the Headless version of OpenCV python doesn't require this,
     # so I'm temporarily removing all things to do with window display.
-    # cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
-    cap = cv2.VideoCapture('Turret\Test VIDS\crowd.mp4')
+    cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
     if cap.isOpened():
         print("Capturing")
+
+    else:
+        cap.open()
 
     media = vlc.MediaPlayer("Sounds/BuildinASentry.mp3")
     # If the rpi doesn't have a bulit in speaker this may not work.
@@ -41,7 +43,7 @@ def main():
             print(success)
             break
 
-        elif success == True:
+        else:
             print("Success!")
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             find_people(gray, hog, servo_speed)
