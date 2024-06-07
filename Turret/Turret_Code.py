@@ -36,9 +36,9 @@ def main():
         success, frame = cap.read()
         # Success contains a value to convey if the data was returned successfully.
 
-        if not (success):
-            print('--(!) No captured frame -- Break!')
-            break
+        # if not (success):
+        #  print('--(!) No captured frame -- Break!')
+        #  break
 
         find_people(frame, hog, servo_speed)
 
