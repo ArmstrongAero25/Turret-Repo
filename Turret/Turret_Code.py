@@ -6,8 +6,6 @@ import cv2
 
 
 ### Constant Values ###
-width = 640
-height = 480
 servo_speed = 10
 kit = ServoKit(channels=16)
 
@@ -55,8 +53,10 @@ def main():
 
 def find_people(frame, hog, width, height, servo_speed):
     # This will find a target within a given frame.
+    width = frame.shape[1]
+    height = frame.shape[0]
 
-    frame = cv2.resize(frame, (width, height))
+    frame = cv2.resize(frame, ((width, height) * 0.5))
     gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
     boxes, _ = hog.detectMultiScale(gray, winStride=(8, 8))
