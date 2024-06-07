@@ -40,7 +40,7 @@ def main():
             print('--(!) No captured frame -- Break!')
             break
 
-        find_people(frame, hog, width, height, servo_speed)
+        find_people(frame, hog, servo_speed)
 
         # cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -51,7 +51,7 @@ def main():
     # cv2.waitKey(1)
 
 
-def find_people(frame, hog, width, height, servo_speed):
+def find_people(frame, hog, servo_speed):
     # This will find a target within a given frame.
     width = frame.shape[1]
     height = frame.shape[0]
