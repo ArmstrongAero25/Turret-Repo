@@ -20,7 +20,7 @@ def main():
     # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out
     # the Headless version of OpenCV python doesn't require this,
     # so I'm temporarily removing all things to do with window display.
-    cap = cv2.VideoCapture(1 + cv2.CAP_V4L2)
+    cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
 
     if not cap.isOpened():
         raise TE.videoException
@@ -53,7 +53,11 @@ def main():
 
 def find_people(frame, hog, servo_speed):
     # This will find a target within a given frame.
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    try:
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    except Exception as e:
+        print(e)
 
     boxes, _ = hog.detectMultiScale(gray, winStride=(8, 8))
     boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
