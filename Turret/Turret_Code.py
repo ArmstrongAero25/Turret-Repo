@@ -5,13 +5,16 @@ import vlc  # NOTE: pip install python-vlc
 import cv2
 
 
+### Constant Values ###
+width = 640
+height = 480
+servo_speed = 10
+kit = ServoKit(channels=16)
+
+
 def main():
     # This is the program entry point.
     print("--(note) Initialising..")
-    width = 640
-    height = 480
-    kit = ServoKit(channels=16)
-    servo_speed = 10
 
     hog = cv2.HOGDescriptor()
     hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
@@ -39,7 +42,7 @@ def main():
             print('--(!) No captured frame -- Break!')
             break
 
-        frame = find_people(frame, hog, width, height, kit, servo_speed)
+        frame = find_people(frame, hog, width, height, servo_speed)
 
         # cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -50,7 +53,7 @@ def main():
     # cv2.waitKey(1)
 
 
-def find_people(frame, hog, width, height, kit, servo_speed):
+def find_people(frame, hog, width, height, servo_speed):
     # This will find a target within a given frame.
 
     frame = cv2.resize(frame, (width, height))
@@ -63,7 +66,7 @@ def find_people(frame, hog, width, height, kit, servo_speed):
 
         cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
         print("--(note) Person detected -- Turning servo.")
-        turn_servo(xA, yA, xB, yB, kit, servo_speed)
+        turn_servo(xA, yA, xB, yB, servo_speed)
 
     return frame
 
