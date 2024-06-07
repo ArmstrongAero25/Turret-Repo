@@ -6,7 +6,6 @@ from adafruit_servokit import ServoKit
 
 def main():
     # This is the program entry point.
-
     print("--(note) Initialising..")
     width, height = 640, 480
     kit = ServoKit(channels=16)
@@ -15,7 +14,9 @@ def main():
     hog = cv2.HOGDescriptor()
     hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
-    # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out the Headless version of OpenCV python doesn't require this, so I'm temporarily removing all things to do with window display.
+    # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out
+    # the Headless version of OpenCV python doesn't require this,
+    # so I'm temporarily removing all things to do with window display.
     cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
 
     if not cap.isOpened():
@@ -66,9 +67,6 @@ def find_People(frame, hog, width, height, kit, servo_speed):
     for (xA, yA, xB, yB) in boxes:
 
         cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
-        # Calm1403: Frame data | Cord data xA, yA | xB, yB | green colour value | box width?
-        # What do the terms xA -> yB represent? They're the coords of the people in the frame
-        # but why are there two respective values for x and y?
         print("--(note) Person detected -- Turning servo.")
         turn_servo(xA, yA, xB, yB, kit, servo_speed)
 
