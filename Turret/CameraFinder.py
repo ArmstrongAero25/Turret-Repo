@@ -12,6 +12,7 @@ for i in range(20):
         success, frame = cap.read()
         if not success:
             print(f"No frame captured from camera {i}")
+            print(success)
             break
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
