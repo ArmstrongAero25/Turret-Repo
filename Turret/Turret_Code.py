@@ -38,6 +38,8 @@ def main():
 
         if not success:
             print('--(!) No captured frame -- Break!')
+            # Print the error message from OpenCV. If there is one. (Stack Overflow is really helpful)
+            print(cv2.VideoCapture.retrieve())
             print(success)
             break
 
