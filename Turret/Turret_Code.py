@@ -63,9 +63,6 @@ def find_people(frame, hog, servo_speed):
     boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
 
     for (xA, yA, xB, yB) in boxes:
-
-        cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
-        print("--(note) Person detected -- Turning servo.")
         turn_servo(xA, yA, xB, yB, servo_speed)
 
 
