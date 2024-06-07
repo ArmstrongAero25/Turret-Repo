@@ -23,7 +23,7 @@ def main():
     cap = cv2.VideoCapture(0 + cv2.CAP_V4L2)
 
     if not cap.isOpened():
-        raise TE.videoException
+        print("No Capture")
 
     media = vlc.MediaPlayer("Sounds/BuildinASentry.mp3")
     # If the rpi doesn't have a bulit in speaker this may not work.
