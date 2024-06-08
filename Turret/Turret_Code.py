@@ -53,7 +53,7 @@ def turn_servo(xA, yA, xB, yB, kit, servo_speed):
     # Calm: Hey, as long as this works, grand.
     pan_servo_position = int((xA + xB) // servo_speed)
     tilt_servo_position = int((yA + yB) // servo_speed)
-
+    print("Turning Servos")
     kit.servo[0].angle = max(0, min(180, pan_servo_position))
     kit.servo[1].angle = max(0, min(180, tilt_servo_position))
 
