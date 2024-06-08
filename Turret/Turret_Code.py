@@ -1,8 +1,6 @@
 from adafruit_servokit import ServoKit
 from picamera2 import Picamera2
-import Turret_Exceptions as TE
 import numpy as np
-import vlc  # NOTE: pip install python-vlc
 import cv2
 
 
