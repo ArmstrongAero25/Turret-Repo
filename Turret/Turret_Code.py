@@ -35,15 +35,9 @@ def main():
         frame = picam2.capture_array()
         # Success contains a value to convey if the data was returned successfully.
 
-        if frame == None:
-            print('--(!) No captured frame -- Break!')
-            print(frame)
-            break
-
-        else:
-            print("Success!")
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            find_people(gray, hog, servo_speed)
+        print("Capture Success!")
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        find_people(gray, hog, servo_speed)
 
         # cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
