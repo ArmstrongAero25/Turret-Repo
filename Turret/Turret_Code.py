@@ -53,9 +53,9 @@ def turn_servo(xA, yA, xB, yB, kit, width, height):
     # This will turn the servo by the given coordinates.
     # Calm: Hey, as long as this works, grand.
     pan_servo_position = int((((xA + xB) // 2)/width)*180)
-    tilt_servo_position = int((((yA + yB) // 2)/width)*180)
+    tilt_servo_position = int((((yA + yB) // 2)/height)*180)
+    print("Turning Servos to", pan_servo_position, tilt_servo_position)
 
-    print("Turning Servos")
     kit.servo[0].angle = max(0, min(180, pan_servo_position))
     kit.servo[1].angle = max(0, min(180, tilt_servo_position))
 
