@@ -1,8 +1,6 @@
 from adafruit_servokit import ServoKit
 from picamera2 import Picamera2
-import Turret_Exceptions as TE
 import numpy as np
-import vlc  # NOTE: pip install python-vlc
 import cv2
 
 
@@ -49,7 +47,7 @@ def find_people(gray, hog):
         turn_servo(xA, yA, xB, yB, servo_speed)
 
 
-def turn_servo(xA, yA, xB, yB, kit, servo_speed):
+def turn_servo(xA, yA, xB, yB, servo_speed):
     # This will turn the servo by the given coordinates.
     # Calm: Hey, as long as this works, grand.
     pan_servo_position = (xA + xB) // servo_speed
