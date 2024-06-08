@@ -52,8 +52,8 @@ def turn_servo(xA, yA, xB, yB, kit, servo_speed):
     print("Person Detected")
     # This will turn the servo by the given coordinates.
     # Calm: Hey, as long as this works, grand.
-    pan_servo_position = int((xA + xB) // servo_speed)
-    tilt_servo_position = int((yA + yB) // servo_speed)
+    pan_servo_position = int((xA + xB) // 2 * servo_speed)
+    tilt_servo_position = int((yA + yB) // 2 * servo_speed)
     print("Turning Servos")
     kit.servo[0].angle = max(0, min(180, pan_servo_position))
     kit.servo[1].angle = max(0, min(180, tilt_servo_position))
