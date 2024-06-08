@@ -39,10 +39,6 @@ def main():
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         find_people(gray, hog, servo_speed)
 
-        # cv2.imshow('frame', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
 
 def find_people(gray, hog, servo_speed):
     # This will find a target within a given frame.
