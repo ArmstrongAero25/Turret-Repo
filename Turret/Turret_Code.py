@@ -41,6 +41,7 @@ def main():
 def find_people(gray, hog):
     # This will find a target within a given frame.
     boxes, _ = hog.detectMultiScale(gray, winStride=(8, 8))
+    print("Person Detected")
     boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
 
     for (xA, yA, xB, yB) in boxes:
