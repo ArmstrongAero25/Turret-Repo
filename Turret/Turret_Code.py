@@ -46,10 +46,10 @@ def find_people(gray, hog):
     boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
 
     for (xA, yA, xB, yB) in boxes:
-        turn_servo(xA, yA, xB, yB, servo_speed)
+        turn_servo(xA, yA, xB, yB)
 
 
-def turn_servo(xA, yA, xB, yB, kit, servo_speed):
+def turn_servo(xA, yA, xB, yB):
     # This will turn the servo by the given coordinates.
     # Calm: Hey, as long as this works, grand.
     pan_servo_position = (xA + xB) // servo_speed
