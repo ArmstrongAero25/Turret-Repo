@@ -1,4 +1,5 @@
 from adafruit_servokit import ServoKit
+from picamera2 import Picamera2
 import Turret_Exceptions as TE
 import numpy as np
 import vlc  # NOTE: pip install python-vlc
@@ -20,12 +21,9 @@ def main():
     # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out
     # the Headless version of OpenCV python doesn't require this,
     # so I'm temporarily removing all things to do with window display.
-    cap = cv2.VideoCapture(0)
-    if cap.isOpened():
-        print("Capturing")
 
-    else:
-        cap.open()
+    picam2 = Picamera2()
+    picam2.start()
 
     # media = vlc.MediaPlayer("Sounds/BuildinASentry.mp3")
     # If the rpi doesn't have a bulit in speaker this may not work.
@@ -34,13 +32,12 @@ def main():
     print("--(note) Initialisation successful.")
 
     while True:
-
-        success, frame = cap.read()
+        frame = picam2.capture_array()
         # Success contains a value to convey if the data was returned successfully.
 
-        if not success:
+        if frame == None:
             print('--(!) No captured frame -- Break!')
-            print(success, frame)
+            print(frame)
             break
 
         else:
@@ -51,10 +48,6 @@ def main():
         # cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-
-    cap.release()
-    # cv2.destroyAllWindows()
-    # cv2.waitKey(1)
 
 
 def find_people(gray, hog, servo_speed):
