@@ -27,13 +27,13 @@ def main():
     # If the rpi doesn't have a bulit in speaker this may not work.
     # media.play()
 
-    print("--(note) Initialisation successful.")
+    print("--(note) Initialisation \033[91mSuccessful\033[0m!")
 
     while True:
         frame = picam2.capture_array()
         # Success contains a value to convey if the data was returned successfully.
 
-        print("Capture Success!")
+        print("--(note) Capture \033[91mSuccess\033[0m!")
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         find_people(gray, hog)
 
@@ -42,18 +42,18 @@ def find_people(gray, hog):
     # This will find a target within a given frame.
     boxes, _ = hog.detectMultiScale(gray, winStride=(8, 8))
     boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
-    print(f"Detected boxes: {boxes}")
+    print(f"--(note) Detected Boxes: {boxes}")
 
     for (xA, yA, xB, yB) in boxes:
         turn_servo(xA, yA, xB, yB, kit, gray.shape[1], gray.shape[0])
 
 
 def turn_servo(xA, yA, xB, yB, kit, width, height):
-    print("Person Detected")
+    print("--(note) Person detected.")
     # This will turn the servo by the given coordinates.
     # Calm: Hey, as long as this works, grand.
-    pan_servo_position = int((((xA + xB) // 2)/width)*180)
-    tilt_servo_position = int((((yA + yB) // 2)/height)*180)
+    pan_servo_position = int((((xA + xB) // 2) / width) * 180)
+    tilt_servo_position = int((((yA + yB) // 2) / height) * 180)
     print("Turning Servos to", pan_servo_position, tilt_servo_position)
 
     kit.servo[0].angle = max(0, min(180, pan_servo_position))
@@ -64,4 +64,8 @@ def turn_servo(xA, yA, xB, yB, kit, width, height):
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+
+    except KeyboardInterrupt:
+        print("--(note) \033[92mExited\033[0m Program!")
