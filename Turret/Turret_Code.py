@@ -8,37 +8,34 @@ import cv2
 servo_speed = 10
 kit = ServoKit(channels=16)
 
-try:
-    def main():
-        # This is the program entry point.
-        print("--(note) Initialising..")
 
-        hog = cv2.HOGDescriptor()
-        hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+def main():
+    # This is the program entry point.
+    print("--(note) Initialising..")
 
-        # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out
-        # the Headless version of OpenCV python doesn't require this,
-        # so I'm temporarily removing all things to do with window display.
+    hog = cv2.HOGDescriptor()
+    hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
-        picam2 = Picamera2()
-        picam2.start()
+    # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out
+    # the Headless version of OpenCV python doesn't require this,
+    # so I'm temporarily removing all things to do with window display.
 
-        # media = vlc.MediaPlayer("Sounds/BuildinASentry.mp3")
-        # If the rpi doesn't have a bulit in speaker this may not work.
-        # media.play()
+    picam2 = Picamera2()
+    picam2.start()
 
-        print("--(note) Initialisation successful.")
+    # media = vlc.MediaPlayer("Sounds/BuildinASentry.mp3")
+    # If the rpi doesn't have a bulit in speaker this may not work.
+    # media.play()
 
-        while True:
-            frame = picam2.capture_array()
-            # Success contains a value to convey if the data was returned successfully.
+    print("--(note) Initialisation successful.")
 
-            print("Capture Success!")
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            find_people(gray, hog)
+    while True:
+        frame = picam2.capture_array()
+        # Success contains a value to convey if the data was returned successfully.
 
-except KeyboardInterrupt:
-    print("Program Stopped")
+        print("Capture Success!")
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        find_people(gray, hog)
 
 
 def find_people(gray, hog):
@@ -66,5 +63,8 @@ def turn_servo(xA, yA, xB, yB, kit, width, height):
     # It's a nice visualisation.
 
 
-if __name__ == "__main__":
-    main()
+try:
+    if __name__ == "__main__":
+        main()
+except KeyboardInterrupt:
+    print("Program Stopped")
