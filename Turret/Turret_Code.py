@@ -68,3 +68,6 @@ try:
         main()
 except KeyboardInterrupt:
     print("Program Stopped")
+
+finally:
+    print("Have a nice day")
