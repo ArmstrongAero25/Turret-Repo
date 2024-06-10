@@ -8,34 +8,37 @@ import cv2
 servo_speed = 10
 kit = ServoKit(channels=16)
 
+try:
+    def main():
+        # This is the program entry point.
+        print("--(note) Initialising..")
 
-def main():
-    # This is the program entry point.
-    print("--(note) Initialising..")
+        hog = cv2.HOGDescriptor()
+        hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
-    hog = cv2.HOGDescriptor()
-    hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+        # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out
+        # the Headless version of OpenCV python doesn't require this,
+        # so I'm temporarily removing all things to do with window display.
 
-    # cv2.startWindowThread() HEXA-SOFTWARE-DEV: Turns out
-    # the Headless version of OpenCV python doesn't require this,
-    # so I'm temporarily removing all things to do with window display.
+        picam2 = Picamera2()
+        picam2.start()
 
-    picam2 = Picamera2()
-    picam2.start()
+        # media = vlc.MediaPlayer("Sounds/BuildinASentry.mp3")
+        # If the rpi doesn't have a bulit in speaker this may not work.
+        # media.play()
 
-    # media = vlc.MediaPlayer("Sounds/BuildinASentry.mp3")
-    # If the rpi doesn't have a bulit in speaker this may not work.
-    # media.play()
+        print("--(note) Initialisation successful.")
 
-    print("--(note) Initialisation successful.")
+        while True:
+            frame = picam2.capture_array()
+            # Success contains a value to convey if the data was returned successfully.
 
-    while True:
-        frame = picam2.capture_array()
-        # Success contains a value to convey if the data was returned successfully.
+            print("Capture Success!")
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            find_people(gray, hog)
 
-        print("Capture Success!")
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        find_people(gray, hog)
+except KeyboardInterrupt:
+    print("Program Stopped")
 
 
 def find_people(gray, hog):
