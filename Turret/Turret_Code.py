@@ -13,6 +13,8 @@ def main():
     # This is the program entry point.
     print("--(note) Initialising..")
 
+    kit.servo[15].throttle = 1
+
     hog = cv2.HOGDescriptor()
     hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
@@ -58,6 +60,8 @@ def turn_servo(xA, yA, xB, yB, kit, width, height):
 
     kit.servo[0].angle = max(0, min(180, pan_servo_position))
     kit.servo[1].angle = max(0, min(180, tilt_servo_position))
+
+    kit.servo[14].throttle = 1
 
     # Calm1403: Here I like to visualise one of those navy turrets they have on warships turning up and down.
     # It's a nice visualisation.
