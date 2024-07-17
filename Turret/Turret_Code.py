@@ -5,7 +5,6 @@ import cv2
 
 
 ### Constant Values ###
-servo_speed = 10
 kit = ServoKit(channels=16)
 
 
