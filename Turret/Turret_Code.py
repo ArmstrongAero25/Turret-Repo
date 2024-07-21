@@ -11,8 +11,8 @@ kit = ServoKit(channels=16)
 def main():
     # This is the program entry point.
     print("--(note) Initialising..")
-    kit.servo[0].angle = 0
-    kit.servo[4].angle = 0
+    kit.servo[0].angle = 90
+    kit.servo[4].angle = 90
     kit.servo[15].throttle = 1
 
     hog = cv2.HOGDescriptor()
