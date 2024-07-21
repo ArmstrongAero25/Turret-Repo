@@ -57,8 +57,8 @@ def turn_servo(xA, yA, xB, yB, kit, width, height):
     tilt_servo_position = int((((yA + yB) // 2)/height)*180)
     print("Turning Servos to", pan_servo_position, tilt_servo_position)
 
-    kit.servo[4].angle = max(0, min(180, pan_servo_position))
-    kit.servo[0].angle = max(0, min(180, tilt_servo_position))
+    kit.servo[4].angle = max(0, min(180, pan_servo_position + 90))
+    kit.servo[0].angle = max(0, min(180, tilt_servo_position + 90))
 
     kit.servo[14].throttle = 1
 
